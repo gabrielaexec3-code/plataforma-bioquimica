@@ -173,7 +173,7 @@ NOMES = {
     "conversao_X": "Conversão do reagente (X)",
     "x": "Conversão",
     "X_final": "Conversão final",
-    "V": "Volume do reator (V)",
+    "volume_reator": "Volume do reator",
     "volume": "Volume",
     "volume_L": "Volume do reator",
     "volume_m3": "Volume",
@@ -274,9 +274,10 @@ UNIDADES.update({
     "x": "g/L",
 
     # Engenharia enzimática
-    "v": "g/(L·h)",
-    "vmax": "g/(L·h)",
-    "km": "g/L",
+   "vmax": "mol/(L·s)",
+   "v": "mol/(L·s)",
+   "km": "mol/L",
+   "s": "mol/L",
 
     # Fermentação
     "x0": "g/L",
@@ -360,9 +361,9 @@ UNIDADES_ENTRADA = {
     "beta": "gP/(gX·h)",
 
     # Engenharia enzimática
-    "vmax": "g/(L·h)",
-    "km": "g/L",
-    "v": "g/(L·h)",
+   "vmax": "mol/(L·s)",
+   "km": "mol/L",
+   "s": "mol/L",
 
     # Fermentação
     "s0": "g/L",
