@@ -1249,7 +1249,7 @@ de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industri
 """, unsafe_allow_html=True)
 
 # ==========================================================
-# LOGO REACTOROS
+# SIDEBAR REACTOROS
 # ==========================================================
 
 from pathlib import Path
@@ -1257,50 +1257,39 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 LOGO_PATH = BASE_DIR / "logo.png"
 
+# ---------- LOGO + NOME ----------
+st.sidebar.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
+
 if LOGO_PATH.exists():
-    st.sidebar.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
+    st.sidebar.image(str(LOGO_PATH), width=85)
 
-    st.sidebar.image(
-        str(LOGO_PATH),
-        width=180
-    )
-
-    st.sidebar.markdown("</div>", unsafe_allow_html=True)
-else:
-    st.sidebar.markdown("""
-    <div style="text-align:center;">
-        <h1 style="color:white;font-size:34px;margin-bottom:0;">ReactorOS</h1>
-        <p style="color:#38bdf8;font-size:13px;margin-top:4px;">
-        Engineering Operating System
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    st.sidebar.markdown("""
-<div style="text-align:center; margin-top:10px; margin-bottom:25px;">
-
+st.sidebar.markdown("""
 <h1 style="
-color:#FFFFFF;
-font-size:32px;
+color:#ffffff;
+font-size:30px;
 font-weight:800;
+margin-top:8px;
 margin-bottom:0;
+text-align:center;
 ">
 ReactorOS
 </h1>
 
 <p style="
-color:#38BDF8;
-font-size:13px;
+color:#38bdf8;
+font-size:12px;
 font-weight:600;
 letter-spacing:1px;
-margin-top:4px;
+margin-top:2px;
+margin-bottom:25px;
+text-align:center;
 ">
 Engineering Operating System
 </p>
-
 </div>
 """, unsafe_allow_html=True)
 
-st.sidebar.title("Menu de Navegação")
+# ---------- MENU ----------
 st.sidebar.title("Menu de Navegação")
 
 pagina = st.sidebar.radio(
@@ -1310,11 +1299,19 @@ pagina = st.sidebar.radio(
 
 st.sidebar.divider()
 
+# ---------- VARIÁVEIS PADRÃO ----------
 categoria = None
+modelo = None
 modulo_projeto = None
 tipo_reator_projeto = None
+modulo_cinetica_quimica = None
+tipo_taxa_reacao = None
+modelo_irreversivel = None
+modelo_reversivel = None
 
+# ---------- ÁREA DE ESTUDO E MODELOS ----------
 if pagina == "Aplicação":
+
     categoria = st.sidebar.selectbox(
         "Área de estudo",
         [
@@ -1328,7 +1325,17 @@ if pagina == "Aplicação":
         ]
     )
 
+    # Modelo aparece logo abaixo da Área de estudo,
+    # exceto nos módulos que usam subtópicos próprios.
+    if categoria not in ["Projeto de Reatores", "Cinética das Reações Químicas"]:
+        modelo = st.sidebar.selectbox(
+            "Modelo",
+            modelos_por_area[categoria]
+        )
+
+    # ---------- PROJETO DE REATORES ----------
     if categoria == "Projeto de Reatores":
+
         modulo_projeto = st.sidebar.selectbox(
             "Subtópico",
             [
@@ -1346,11 +1353,9 @@ if pagina == "Aplicação":
                 ["PFR", "CSTR"]
             )
 
-    modulo_cinetica_quimica = None
-    ordem_irreversivel = None
-    ordem_reversivel = None
-
+    # ---------- CINÉTICA DAS REAÇÕES QUÍMICAS ----------
     if categoria == "Cinética das Reações Químicas":
+
         modulo_cinetica_quimica = st.sidebar.selectbox(
             "Subtópico",
             [
@@ -1365,10 +1370,6 @@ if pagina == "Aplicação":
                 "Tempo espacial (τ)"
             ]
         )
-
-        tipo_taxa_reacao = None
-        modelo_irreversivel = None
-        modelo_reversivel = None
 
         if modulo_cinetica_quimica == "Taxa de reação (-rA)":
             tipo_taxa_reacao = st.sidebar.selectbox(
@@ -1399,30 +1400,31 @@ if pagina == "Aplicação":
                     "Reação geral"
                 ]
             )
-# Espaço até o final da sidebar
-for _ in range(12):
-    st.sidebar.write("")
+
+# ==========================================================
+# RODAPÉ DA SIDEBAR
+# ==========================================================
+
+st.sidebar.markdown("<br>" * 8, unsafe_allow_html=True)
 
 st.sidebar.divider()
 
 st.sidebar.markdown("""
-<div style="text-align:center;color:#94a3b8;font-size:13px;line-height:1.7;">
+<div style="
+text-align:center;
+color:#94a3b8;
+font-size:13px;
+line-height:1.8;
+margin-bottom:10px;
+">
 
-<b>Desenvolvido por ReactorSoft</b><br>
-
+<b>Desenvolvido por ReactorSoft</b><br><br>
 Engenharia Química<br><br>
-
-<b>ReactorOS v1.0</b><br>
-
+<b>ReactorOS v1.0</b><br><br>
 © 2026 ReactorSoft Technologies
 
 </div>
 """, unsafe_allow_html=True)
-
-# ======================================================
-# PÁGINA SOBRE
-# ======================================================
-
 # ======================================================
 # PÁGINA SOBRE
 # ======================================================
