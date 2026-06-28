@@ -1236,32 +1236,61 @@ ReactorOS
 Engineering Operating System
 </div>
 
-<div class="card-text" style="margin-top:20px;">
+<div style="
+margin-top:20px;
+color:#94a3b8;
+font-size:18px;
+font-weight:500;
+line-height:1.7;
+">
 Sistema integrado para modelagem, simulação, otimização e resolução
 de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industriais.
 </div>
 """, unsafe_allow_html=True)
 
-# ======================================================
-# SIDEBAR
-# ======================================================
+# ==========================================================
+# LOGO REACTOROS
+# ==========================================================
 
-st.sidebar.markdown("""
+st.sidebar.markdown(
+    "<div style='text-align:center;'>",
+    unsafe_allow_html=True
+)
+
+st.sidebar.image(
+    "logo.png",
+    width=180
+)
+
+st.sidebar.markdown(
+    """
+<div style="text-align:center; margin-top:10px; margin-bottom:25px;">
+
 <h1 style="
-color:white;
+color:#FFFFFF;
+font-size:34px;
+font-weight:800;
 margin-bottom:0;
 ">
 ReactorOS
 </h1>
 
 <p style="
-color:#38bdf8;
-font-size:13px;
-margin-top:0;
+color:#38BDF8;
+font-size:14px;
+font-weight:600;
+letter-spacing:2px;
+margin-top:4px;
 ">
 Engineering Operating System
 </p>
-""", unsafe_allow_html=True)
+
+</div>
+""",
+    unsafe_allow_html=True
+)
+
+st.sidebar.title("Menu de Navegação")
 st.sidebar.title("Menu de Navegação")
 
 pagina = st.sidebar.radio(
@@ -1360,11 +1389,25 @@ if pagina == "Aplicação":
                     "Reação geral"
                 ]
             )
+# Espaço até o final da sidebar
+for _ in range(12):
+    st.sidebar.write("")
 
 st.sidebar.divider()
-st.sidebar.caption("Desenvolvido por Gabriela Silva")
-st.sidebar.caption("Engenharia Química")
 
+st.sidebar.markdown("""
+<div style="text-align:center;color:#94a3b8;font-size:13px;line-height:1.7;">
+
+<b>Desenvolvido por ReactorSoft</b><br>
+
+Engenharia Química<br><br>
+
+<b>ReactorOS v1.0</b><br>
+
+© 2026 ReactorSoft Technologies
+
+</div>
+""", unsafe_allow_html=True)
 
 # ======================================================
 # PÁGINA SOBRE
