@@ -12,13 +12,13 @@ from datetime import datetime
 API_URL = "https://plataforma-bioquimica-api.onrender.com"
 
 st.set_page_config(
-    page_title="Plataforma de Engenharia de Reações Químicas e Bioquímicas",
+    page_title="ReactorOS",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # ======================================================
-# ESTILO VISUAL PROFISSIONAL
+# ESTILO VISUAL 
 # ======================================================
 
 st.markdown("""
@@ -29,17 +29,34 @@ st.markdown("""
     max-width: 1250px;
 }
 
-.main-title {
-    font-size: 42px;
-    font-weight: 800;
-    color: #f8fafc;
-    margin-bottom: 0px;
+.main-title{
+
+    font-size:58px;
+
+    font-weight:900;
+
+    color:#ffffff;
+
+    letter-spacing:-2px;
+
+    margin-bottom:0px;
+
 }
 
-.subtitle {
-    font-size: 18px;
-    color: #cbd5e1;
-    margin-bottom: 22px;
+.subtitle{
+
+    font-size:24px;
+
+    font-weight:600;
+
+    color:#38bdf8;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    margin-bottom:18px;
+
 }
 
 .card {
@@ -1210,21 +1227,46 @@ def grafico_conversao_fa(fa0):
 # CABEÇALHO
 # ======================================================
 
-st.markdown('<div class="main-title"> Plataforma de Engenharia de Reações Químicas e Bioquímicas</div>', unsafe_allow_html=True)
-st.markdown(
-    '<div class="subtitle">Sistema computacional para resolução, análise e visualização de problemas em Engenharia Bioquímica.</div>',
-    unsafe_allow_html=True
-)
+st.markdown("""
+<div class="main-title">
+ReactorOS
+</div>
+
+<div class="subtitle">
+Engineering Operating System
+</div>
+
+<div class="card-text" style="margin-top:20px;">
+Sistema integrado para modelagem, simulação, otimização e resolução
+de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industriais.
+</div>
+""", unsafe_allow_html=True)
 
 # ======================================================
 # SIDEBAR
 # ======================================================
 
+st.sidebar.markdown("""
+<h1 style="
+color:white;
+margin-bottom:0;
+">
+ReactorOS
+</h1>
+
+<p style="
+color:#38bdf8;
+font-size:13px;
+margin-top:0;
+">
+Engineering Operating System
+</p>
+""", unsafe_allow_html=True)
 st.sidebar.title("Menu de Navegação")
 
 pagina = st.sidebar.radio(
     "Selecione a página",
-    ["Resolvedor de Exercícios", "Sobre o Projeto", "Como usar"]
+    ["Aplicação", "Sobre o Projeto", "Como usar"]
 )
 
 st.sidebar.divider()
@@ -2474,7 +2516,7 @@ else:
 
 st.markdown(f"""
 <div class="footer">
-Plataforma de Engenharia Química • Desenvolvida por Gabriela Silva • {datetime.now().year}<br>
+ReactorOS • Desenvolvida por ReactorSoft • {datetime.now().year}<br>
 Sistema acadêmico para resolução, análise e visualização de problemas de Engenharia Química.
 </div>
 """, unsafe_allow_html=True)
