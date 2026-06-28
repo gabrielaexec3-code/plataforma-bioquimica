@@ -1247,33 +1247,55 @@ Sistema integrado para modelagem, simulação, otimização e resolução
 de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industriais.
 </div>
 """, unsafe_allow_html=True)
-
+modelos_por_categoria = {
+    "Cinética Bioquímica": [
+        "Monod",
+        "Haldane",
+        "Contois",
+        "Luedeking-Piret"
+    ],
+    "Engenharia Enzimática": [
+        "Michaelis-Menten",
+        "Lineweaver-Burk",
+        "Hanes-Woolf"
+    ],
+    "Fermentação": [
+        "Rendimento",
+        "Produtividade",
+        "Washout",
+        "Fermentador Contínuo"
+    ],
+    "Esterilização": [
+        "Valor D",
+        "Valor F"
+    ],
+    "Reatores Ideais": [
+        "Batelada primeira ordem",
+        "Batelada segunda ordem",
+        "CSTR",
+        "PFR"
+    ]
+}
 # ==========================================================
 # SIDEBAR REACTOROS
 # ==========================================================
-
-from pathlib import Path
-
-BASE_DIR = Path(__file__).parent
-LOGO_PATH = BASE_DIR / "logo.png"
-
 st.sidebar.markdown("""
 <div style="
 text-align:center;
-margin-top:-35px;
-margin-bottom:18px;
+margin-top:-55px;
+margin-bottom:10px;
 ">
 """, unsafe_allow_html=True)
 
 if LOGO_PATH.exists():
-    st.sidebar.image(str(LOGO_PATH), width=70)
+    st.sidebar.image(str(LOGO_PATH), width=55)
 
 st.sidebar.markdown("""
 <h1 style="
 color:#ffffff;
-font-size:24px;
+font-size:22px;
 font-weight:800;
-margin-top:4px;
+margin-top:2px;
 margin-bottom:0;
 text-align:center;
 ">
@@ -1282,10 +1304,10 @@ ReactorOS
 
 <p style="
 color:#38bdf8;
-font-size:10px;
+font-size:9px;
 font-weight:600;
 letter-spacing:1px;
-margin-top:2px;
+margin-top:0;
 margin-bottom:18px;
 text-align:center;
 ">
