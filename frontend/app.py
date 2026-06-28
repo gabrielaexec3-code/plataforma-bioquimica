@@ -1222,10 +1222,14 @@ def grafico_conversao_fa(fa0):
         "Conversão — vazão molar de A em função de X",
         "FA = FA₀(1-X)."
     )
-
 # ======================================================
 # CABEÇALHO
 # ======================================================
+
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+LOGO_PATH = BASE_DIR / "logo.png"
 
 st.markdown("""
 <div class="main-title">
@@ -1238,7 +1242,7 @@ Engineering Operating System
 
 <div style="
 margin-top:20px;
-color:#94a3b8;
+color:#cbd5e1;
 font-size:18px;
 font-weight:500;
 line-height:1.7;
@@ -1247,27 +1251,41 @@ Sistema integrado para modelagem, simulação, otimização e resolução
 de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industriais.
 </div>
 """, unsafe_allow_html=True)
+
+
+# ======================================================
+# MODELOS DA SIDEBAR
+# ======================================================
+
 modelos_por_categoria = {
     "Cinética Bioquímica": [
         "Monod",
-        "Haldane",
+        "Haldane/Andrews",
         "Contois",
         "Luedeking-Piret"
     ],
     "Engenharia Enzimática": [
         "Michaelis-Menten",
-        "Lineweaver-Burk",
-        "Hanes-Woolf"
+        "Ajuste Lineweaver-Burk",
+        "Ajuste Hanes-Woolf",
+        "Ajuste Eadie-Hofstee",
+        "Comparativo dos 3 ajustes"
     ],
     "Fermentação": [
-        "Rendimento",
+        "Fermentador contínuo",
+        "Rendimento celular",
+        "Rendimento de produto",
         "Produtividade",
-        "Washout",
-        "Fermentador Contínuo"
+        "Washout"
     ],
     "Esterilização": [
-        "Valor D",
-        "Valor F"
+        "Espera térmica",
+        "Aquecimento com vapor direto",
+        "Resfriamento com serpentina",
+        "Processo descontínuo completo",
+        "Arrhenius kd",
+        "Verificação contínua",
+        "Comparação descontínuo x contínuo"
     ],
     "Reatores Ideais": [
         "Batelada primeira ordem",
@@ -1276,19 +1294,22 @@ modelos_por_categoria = {
         "PFR"
     ]
 }
-# ==========================================================
+
+
+# ======================================================
 # SIDEBAR REACTOROS
-# ==========================================================
+# ======================================================
+
 st.sidebar.markdown("""
 <div style="
 text-align:center;
-margin-top:-55px;
-margin-bottom:10px;
+margin-top:-45px;
+margin-bottom:8px;
 ">
 """, unsafe_allow_html=True)
 
 if LOGO_PATH.exists():
-    st.sidebar.image(str(LOGO_PATH), width=55)
+    st.sidebar.image(str(LOGO_PATH), width=60)
 
 st.sidebar.markdown("""
 <h1 style="
@@ -1325,7 +1346,6 @@ pagina = st.sidebar.radio(
 
 st.sidebar.divider()
 
-# ---------- VARIÁVEIS PADRÃO ----------
 categoria = None
 modelo = None
 modulo_projeto = None
@@ -1335,7 +1355,6 @@ tipo_taxa_reacao = None
 modelo_irreversivel = None
 modelo_reversivel = None
 
-# ---------- ÁREA DE ESTUDO E MODELOS ----------
 if pagina == "Aplicação":
 
     categoria = st.sidebar.selectbox(
@@ -1351,17 +1370,13 @@ if pagina == "Aplicação":
         ]
     )
 
-    # Modelo aparece logo abaixo da Área de estudo,
-    # exceto nos módulos que usam subtópicos próprios.
-    if categoria not in ["Projeto de Reatores", "Cinética das Reações Químicas"]:
-       modelo = st.sidebar.selectbox(
-    "Modelo",
-    modelos_por_categoria[categoria]
-)
+    if categoria in modelos_por_categoria:
+        modelo = st.sidebar.selectbox(
+            "Modelo",
+            modelos_por_categoria[categoria]
+        )
 
-    # ---------- PROJETO DE REATORES ----------
     if categoria == "Projeto de Reatores":
-
         modulo_projeto = st.sidebar.selectbox(
             "Subtópico",
             [
@@ -1379,9 +1394,7 @@ if pagina == "Aplicação":
                 ["PFR", "CSTR"]
             )
 
-    # ---------- CINÉTICA DAS REAÇÕES QUÍMICAS ----------
     if categoria == "Cinética das Reações Químicas":
-
         modulo_cinetica_quimica = st.sidebar.selectbox(
             "Subtópico",
             [
@@ -1426,10 +1439,6 @@ if pagina == "Aplicação":
                     "Reação geral"
                 ]
             )
-
-# ==========================================================
-# RODAPÉ DA SIDEBAR
-# ==========================================================
 
 st.sidebar.markdown("<br>" * 8, unsafe_allow_html=True)
 
@@ -1524,8 +1533,9 @@ else:
     # --------------------------------------------------
     # CINÉTICA BIOQUÍMICA
     # --------------------------------------------------
-    if categoria == "Cinética Bioquímica":
-        modelo = st.sidebar.selectbox("Modelo", ["Monod", "Haldane/Andrews", "Contois", "Luedeking-Piret"])
+  
+     elif categoria == "Cinética Bioquímica":
+
         st.header(f"Cinética Bioquímica — {modelo}")
 
         if modelo == "Monod":
@@ -1602,10 +1612,6 @@ else:
     # ENGENHARIA ENZIMÁTICA
     # --------------------------------------------------
     elif categoria == "Engenharia Enzimática":
-        modelo = st.sidebar.selectbox(
-            "Modelo",
-            ["Michaelis-Menten", "Ajuste Lineweaver-Burk", "Ajuste Hanes-Woolf", "Ajuste Eadie-Hofstee", "Comparativo dos 3 ajustes"]
-        )
         st.header(f"Engenharia Enzimática — {modelo}")
 
         if modelo == "Michaelis-Menten":
@@ -1672,9 +1678,7 @@ else:
     # --------------------------------------------------
     # FERMENTAÇÃO
     # --------------------------------------------------
-    elif categoria == "Fermentação":
-        modelo = st.sidebar.selectbox("Modelo", ["Fermentador contínuo", "Rendimento celular", "Rendimento de produto", "Produtividade", "Washout"])
-        st.header(f"Fermentação — {modelo}")
+   elif categoria == "Fermentação":
 
         if modelo == "Fermentador contínuo":
             col1, col2, col3, col4, col5 = st.columns(5)
@@ -1752,11 +1756,7 @@ else:
     # --------------------------------------------------
     # ESTERILIZAÇÃO
     # --------------------------------------------------
-    elif categoria == "Esterilização":
-        modelo = st.sidebar.selectbox(
-            "Modelo",
-            ["Espera térmica", "Aquecimento com vapor direto", "Resfriamento com serpentina", "Processo descontínuo completo", "Arrhenius kd", "Verificação contínua", "Comparação descontínuo x contínuo"]
-        )
+   elif categoria == "Esterilização":
 
         st.header(f"Esterilização — {modelo}")
 
@@ -1871,12 +1871,7 @@ else:
     # --------------------------------------------------
     # REATORES IDEAIS
     # --------------------------------------------------
-    elif categoria == "Reatores Ideais":
-        modelo = st.sidebar.selectbox(
-            "Modelo",
-            ["Batelada primeira ordem", "Batelada segunda ordem", "Tempo batelada primeira ordem", "CSTR primeira ordem", "CSTR segunda ordem", "PFR primeira ordem", "PFR segunda ordem", "CSTR em série", "Reação reversível", "Balanço de energia adiabático"]
-        )
-
+   elif categoria == "Reatores Ideais":
         st.header(f"Reatores Ideais — {modelo}")
 
         if modelo == "Batelada primeira ordem":
