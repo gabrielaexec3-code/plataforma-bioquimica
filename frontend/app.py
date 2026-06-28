@@ -1240,16 +1240,7 @@ ReactorOS
 Engineering Operating System
 </div>
 
-<div style="
-margin-top:20px;
-color:#cbd5e1;
-font-size:18px;
-font-weight:500;
-line-height:1.7;
-">
-Sistema integrado para modelagem, simulação, otimização e resolução
-de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industriais.
-</div>
+
 """, unsafe_allow_html=True)
 
 
@@ -1308,9 +1299,9 @@ modelos_por_categoria = {
 
 # Logo centralizada e compacta
 if LOGO_PATH.exists():
-    col_esq, col_logo, col_dir = st.sidebar.columns([1, 1.15, 1])
-    with col_logo:
-        st.image(str(LOGO_PATH), width=52)
+    col1, col2, col3 = st.sidebar.columns([1, 2, 1])
+    with col2:
+        st.image(str(LOGO_PATH), width=85)
 
 st.sidebar.markdown("""
 <div style="
@@ -1471,6 +1462,13 @@ Engenharia Química<br><br>
 # ======================================================
 
 if pagina == "Sobre o Projeto":
+    st.markdown("""<div class="card">
+<div class="card-title">Descrição do sistema</div>
+<div class="card-text">
+Sistema integrado para modelagem, simulação, otimização e resolução
+de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industriais.
+</div>
+</div>""", unsafe_allow_html=True)
 
     st.markdown("""<div class="card">
 <div class="card-title">Objetivo da plataforma</div>
