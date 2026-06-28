@@ -1275,7 +1275,7 @@ categoria = None
 modulo_projeto = None
 tipo_reator_projeto = None
 
-if pagina == "Resolvedor de Exercícios":
+if pagina == "Aplicação":
     categoria = st.sidebar.selectbox(
         "Área de estudo",
         [
@@ -1422,7 +1422,7 @@ elif pagina == "Como usar":
     st.markdown("""<div class="card">
 <div class="card-title">Como utilizar a plataforma</div>
 <div class="card-text">
-1. Selecione <b>Resolvedor de Exercícios</b> no menu lateral.<br>
+1. Selecione <b>Aplicação</b> no menu lateral.<br>
 2. Escolha a área de estudo.<br>
 3. Selecione o modelo desejado.<br>
 4. Preencha as variáveis de entrada.<br>
@@ -1434,7 +1434,7 @@ elif pagina == "Como usar":
     st.info("Na primeira execução, o backend gratuito no Render pode demorar alguns segundos para responder.")
 
 # ======================================================
-# RESOLVEDOR
+# APLICAÇÃO
 # ======================================================
 
 else:
