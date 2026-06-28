@@ -1257,18 +1257,23 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 LOGO_PATH = BASE_DIR / "logo.png"
 
-# ---------- LOGO + NOME ----------
-st.sidebar.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
+st.sidebar.markdown("""
+<div style="
+text-align:center;
+margin-top:-35px;
+margin-bottom:18px;
+">
+""", unsafe_allow_html=True)
 
 if LOGO_PATH.exists():
-    st.sidebar.image(str(LOGO_PATH), width=85)
+    st.sidebar.image(str(LOGO_PATH), width=70)
 
 st.sidebar.markdown("""
 <h1 style="
 color:#ffffff;
-font-size:30px;
+font-size:24px;
 font-weight:800;
-margin-top:8px;
+margin-top:4px;
 margin-bottom:0;
 text-align:center;
 ">
@@ -1277,11 +1282,11 @@ ReactorOS
 
 <p style="
 color:#38bdf8;
-font-size:12px;
+font-size:10px;
 font-weight:600;
 letter-spacing:1px;
 margin-top:2px;
-margin-bottom:25px;
+margin-bottom:18px;
 text-align:center;
 ">
 Engineering Operating System
@@ -1289,7 +1294,6 @@ Engineering Operating System
 </div>
 """, unsafe_allow_html=True)
 
-# ---------- MENU ----------
 st.sidebar.title("Menu de Navegação")
 
 pagina = st.sidebar.radio(
@@ -1328,10 +1332,10 @@ if pagina == "Aplicação":
     # Modelo aparece logo abaixo da Área de estudo,
     # exceto nos módulos que usam subtópicos próprios.
     if categoria not in ["Projeto de Reatores", "Cinética das Reações Químicas"]:
-        modelo = st.sidebar.selectbox(
-            "Modelo",
-            modelos_por_area[categoria]
-        )
+       modelo = st.sidebar.selectbox(
+    "Modelo",
+    modelos_por_categoria[categoria]
+)
 
     # ---------- PROJETO DE REATORES ----------
     if categoria == "Projeto de Reatores":
