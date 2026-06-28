@@ -1252,23 +1252,35 @@ de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industri
 # LOGO REACTOROS
 # ==========================================================
 
-st.sidebar.markdown(
-    "<div style='text-align:center;'>",
-    unsafe_allow_html=True
-)
+from pathlib import Path
 
-st.sidebar.image(
-    "logo.png",
-    width=180
-)
+BASE_DIR = Path(__file__).parent
+LOGO_PATH = BASE_DIR / "logo.png"
 
-st.sidebar.markdown(
-    """
+if LOGO_PATH.exists():
+    st.sidebar.markdown("<div style='text-align:center;'>", unsafe_allow_html=True)
+
+    st.sidebar.image(
+        str(LOGO_PATH),
+        width=180
+    )
+
+    st.sidebar.markdown("</div>", unsafe_allow_html=True)
+else:
+    st.sidebar.markdown("""
+    <div style="text-align:center;">
+        <h1 style="color:white;font-size:34px;margin-bottom:0;">ReactorOS</h1>
+        <p style="color:#38bdf8;font-size:13px;margin-top:4px;">
+        Engineering Operating System
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    st.sidebar.markdown("""
 <div style="text-align:center; margin-top:10px; margin-bottom:25px;">
 
 <h1 style="
 color:#FFFFFF;
-font-size:34px;
+font-size:32px;
 font-weight:800;
 margin-bottom:0;
 ">
@@ -1277,18 +1289,16 @@ ReactorOS
 
 <p style="
 color:#38BDF8;
-font-size:14px;
+font-size:13px;
 font-weight:600;
-letter-spacing:2px;
+letter-spacing:1px;
 margin-top:4px;
 ">
 Engineering Operating System
 </p>
 
 </div>
-""",
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
 st.sidebar.title("Menu de Navegação")
 st.sidebar.title("Menu de Navegação")
