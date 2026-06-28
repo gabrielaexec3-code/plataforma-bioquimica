@@ -1462,13 +1462,21 @@ Engenharia Química<br><br>
 # ======================================================
 
 if pagina == "Sobre o Projeto":
-    st.markdown("""<div class="card">
-<div class="card-title">Descrição do sistema</div>
-<div class="card-text">
-Sistema integrado para modelagem, simulação, otimização e resolução
-de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industriais.
+st.markdown("""
+<div style="
+margin-top:15px;
+margin-bottom:25px;
+color:#cbd5e1;
+font-size:18px;
+font-weight:500;
+line-height:1.8;
+text-align:justify;
+">
+
+Sistema integrado para modelagem, simulação, otimização e resolução de problemas em Engenharia Química, Engenharia Bioquímica e Processos Industriais.
+
 </div>
-</div>""", unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
     st.markdown("""<div class="card">
 <div class="card-title">Objetivo da plataforma</div>
